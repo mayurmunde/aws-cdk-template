@@ -23,5 +23,6 @@ const getEnvProps = (env: Environment) => {
 }
 
 const app = new cdk.App();
-const props = getEnvProps(getEnvironment(app))
-new AwsCdkExampleStack(app, 'AwsCdkExampleStack', { ...props.stackProps, ...props.config });
+const env = getEnvironment(app)
+const props = getEnvProps(env)
+new AwsCdkExampleStack(app, `AwsCdkExampleStack-${env}`, { ...props.stackProps, ...props.config });
