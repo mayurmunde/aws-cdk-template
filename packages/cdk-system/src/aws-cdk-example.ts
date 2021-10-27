@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from '@aws-cdk/core';
-import { AwsCdkExampleStack } from '../lib/aws-cdk-example-stack';
-import dev from '../config/dev';
-import staging from '../config/staging';
-import prod from '../config/prod';
-import Environment from '../config/Environment';
-import getEnvironment from '../config/environment-resolver';
+import { AwsCdkExampleStack } from './aws-cdk-example-stack';
+import dev from './config/dev';
+import staging from './config/staging';
+import prod from './config/prod';
+import Environment from './config/Environment';
+import getEnvironment from './config/environment-resolver';
 
 
 const envConfig = {

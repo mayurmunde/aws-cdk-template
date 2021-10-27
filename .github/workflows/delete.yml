@@ -25,10 +25,9 @@ jobs:
 
     - name: install packages
       run: |
-        npm install
-        npm install -g aws-cdk
+        yarn install
 
     - name: destroy app
       run: |
-        cdk destroy --context ENVIRONMENT=DEV --require-approval never
+        yarn workspace cdk-system destroy --context ENVIRONMENT=DEV --require-approval never
 

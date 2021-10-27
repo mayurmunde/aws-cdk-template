@@ -28,14 +28,9 @@ jobs:
 
     - name: install packages
       run: |
-        npm install
-        npm install -g aws-cdk
+        yarn install
     
-    - name: bootstrap app
-      run: |
-        cdk bootstrap --context ENVIRONMENT=DEV
-
     - name: deploy app
       run: |
-        cdk deploy --context ENVIRONMENT=DEV --require-approval never
+        yarn workspace cdk-system deploy --context ENVIRONMENT=DEV --require-approval never
 
