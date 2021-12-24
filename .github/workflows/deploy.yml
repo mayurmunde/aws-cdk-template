@@ -32,5 +32,6 @@ jobs:
     
     - name: deploy app
       run: |
-        yarn workspace cdk-system deploy --context ENVIRONMENT=DEV --require-approval never
+        yarn workspace cdk-system run cdk synth
+        yarn workspace cdk-system deploy --app cdk.out dev/** --require-approval never
 

@@ -1,28 +1,29 @@
 #!/usr/bin/env node
+import * as cdk from 'aws-cdk-lib';
 import 'source-map-support/register';
-import { AwsCdkExampleStack } from './aws-cdk-example-stack';
-import dev from './config/dev';
-import staging from './config/staging';
-import prod from './config/prod';
-import Environment from './config/Environment';
-import getEnvironment from './config/environment-resolver';
-import { App } from 'aws-cdk-lib';
+import accounts from './utils/accounts';
+import Environment from './utils/Environment';
+import EnvironmentStage from './utils/environment-stage';
 
+class App extends cdk.App {
 
-const envConfig = {
-  DEV: dev,
-  STAGING: staging,
-  PROD: prod
-}
+  constructor() {
+    super();
 
-const getEnvProps = (env: Environment) => {
-  return {
-      stackProps: { env: { region: 'us-east-1', account: '123456789012' } },
-      config: { ...envConfig[env] }
+    const tags = {
+      'tag1': 'tag1',
+      'tag2': 'tag2'
+    };
+
+    const dev = new EnvironmentStage(this, Environment.DEV.toLocaleLowerCase(), {
+      tags: { ...tags },
+      env: {
+        account: accounts[Environment.DEV],
+        region: 'us-east-1'
+      }
+    });
+
   }
 }
 
 const app = new App();
-const env = getEnvironment(app)
-const props = getEnvProps(env)
-new AwsCdkExampleStack(app, `AwsCdkExampleStack-${env}`, { ...props.stackProps, ...props.config });
