@@ -34,4 +34,6 @@ jobs:
       run: |
         yarn workspace cdk-system run cdk synth
         yarn workspace cdk-system deploy --app cdk.out dev/** --require-approval never
+      env:
+        BRANCH_NAME: ${{ github.ref }}
 
