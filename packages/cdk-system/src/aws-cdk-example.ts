@@ -23,6 +23,22 @@ class App extends cdk.App {
       }
     });
 
+    /* const staging = new EnvironmentStage(this, Environment.STAGING.toLocaleLowerCase(), {
+      tags: { ...tags },
+      env: {
+        account: accounts[Environment.STAGING],
+        region: 'us-east-1'
+      }
+    });
+
+    const prod = new EnvironmentStage(this, Environment.PROD.toLocaleLowerCase(), {
+      tags: { ...tags },
+      env: {
+        account: accounts[Environment.PROD],
+        region: 'us-east-1'
+      }
+    }); */
+
   }
 }
 
